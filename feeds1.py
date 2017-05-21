@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # coding=utf-8
 from bs4 import BeautifulSoup
-from urllib import urlopen
+from urllib.request import urlopen
 try:
   import json
 except ImportError:
@@ -40,7 +40,7 @@ for item in newlist:
      final_matches.append(item)
      break
 
-soccer_dict_pre=dict(zip(newlist, links))
+soccer_dict_pre=dict(list(zip(newlist, links)))
 
 final_links=[]
 for item in links:
@@ -51,7 +51,7 @@ for item in links:
 
 final_links_pre=[]
 for item in final_matches:
-   for key ,val in soccer_dict_pre.iteritems():
+   for key ,val in soccer_dict_pre.items():
      if item == key:
        final_links_pre.append(val)
        break
@@ -96,7 +96,7 @@ for item in cricket_item:
   link=item.guid.string
   cric_links.append(link)
 
-ini_cric_dict=dict(zip(cric_match_score, cric_links))
+ini_cric_dict=dict(list(zip(cric_match_score, cric_links)))
 
 final_cric_score=[]
 for item in cric_match_score:
@@ -107,7 +107,7 @@ for item in cric_match_score:
 
 final_cric_links=[]
 for item in final_cric_score:
-  for key , val in ini_cric_dict.iteritems():
+  for key , val in ini_cric_dict.items():
     if key == item :
       final_cric_links.append(val)
       break
